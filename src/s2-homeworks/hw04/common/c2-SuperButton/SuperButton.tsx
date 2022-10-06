@@ -25,6 +25,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
                 : xType === 'secondary'
                     ? ' ' + s.secondary
                     : ' ')
+        + (className ? ' ' + className : '')
 
 
     // + (xType === 'red'? ' ' + s.red: '')
