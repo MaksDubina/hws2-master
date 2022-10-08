@@ -21,7 +21,7 @@ export const Sidebar: FC<PropsType> = ({open, handleClose}) => {
             {open && <div className={s.background} onClick={handleClose}/>}
 
             <aside className={sidebarClass}>
-                <div className={s.nav_wrapper}>
+                {/*<div className={s.nav_wrapper}>*/}
                     <button className={s.close} onClick={handleClose}>
                         <img
                             src={closeIcon}
@@ -56,7 +56,7 @@ export const Sidebar: FC<PropsType> = ({open, handleClose}) => {
                             Junior Plus
                         </NavLink>
                     </nav>
-                </div>
+                {/*</div>*/}
             </aside>
         </>
     )
