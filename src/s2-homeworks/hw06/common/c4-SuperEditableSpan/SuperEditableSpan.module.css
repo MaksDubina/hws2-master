@@ -2,10 +2,21 @@
 }
 
 .span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #0080FF;
+
+    position: relative;
+    bottom: 4px;
+
 }
 
 .input {
 }
 
 .pen {
+    margin: 0 24px 0 0;
 }
