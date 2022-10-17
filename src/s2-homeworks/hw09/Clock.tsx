@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
 import {restoreState} from '../hw06/localStorage/localStorage'
 import s from './Clock.module.css'
-import moment from "moment";
+
 
 function Clock() {
     const [timerId, setTimerId] = useState<number | undefined>(undefined)
@@ -45,11 +45,11 @@ function Clock() {
     });
 
     const stringTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = formatterMons.format(date) || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    const stringDate = date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear() || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
     const stringDay = formatterDayWeek.format(date) || <br/> // пишут студенты
-    const stringMonth = date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear() || <br/> // пишут студенты
+    const stringMonth = formatterMons.format(date) || <br/> // пишут студенты
     //const moments = moment().format('dddd, h:mm:ss') moment().format('MMMM')
     return (
         <div className={s.clock}>
