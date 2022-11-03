@@ -1,8 +1,15 @@
 .container {
+    margin-left: 70px;
+    width: 170px;
+
 }
 
 .wrapper {
+    display: flex;
+
 }
 
+
 .number {
+    margin: 0 22px;
 }
