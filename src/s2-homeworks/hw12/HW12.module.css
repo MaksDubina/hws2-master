@@ -19,5 +19,10 @@ html {
 }
 
 .select {
-
+    margin-left: 70px;
+    border: 1px solid #323232;
+    border-radius: 2px;
+    width: 171px;
+    height: 36px;
+    background-color: transparent;
 }
