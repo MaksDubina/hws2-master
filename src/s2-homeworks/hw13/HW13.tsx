@@ -19,6 +19,7 @@ const HW13 = () => {
     const [text, setText] = useState('')
     const [info, setInfo] = useState('')
     const [image, setImage] = useState('')
+    const [disabled, setDisabled] = useState(false)
 
     const send = (x?: boolean | null) => () => {
         const url =
@@ -30,17 +31,53 @@ const HW13 = () => {
         setImage('')
         setText('')
         setInfo('...loading')
+        setDisabled(true)
 
         axios
             .post(url, {success: x})
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
+                setText('...всё ок)\n' +
+                    'код 200 - обычно означает что скорее всего всё ок)')
+                setInfo('')
+                setDisabled(false)
                 // дописать
 
             })
             .catch((e) => {
                 // дописать
+                switch (e.response.status) {
+                    case 500: {
+                        setCode('Ошибка 500!')
+                        setImage(error500)
+                        setText('эмитация ошибки на сервере\n' +
+                            'ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)')
+                        setInfo('')
+                        setDisabled(false)
+                        return
+                    }
+
+                    case 400: {
+                        setCode('Ошибка 400!')
+                        setImage(error400)
+                        setText('Ты не отправил success в body вообще! ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!')
+                        setInfo('')
+                        setDisabled(false)
+                        return
+                    }
+                    case 0: {
+                        setCode('Error!')
+                        setImage(errorUnknown)
+                        setText('Network Error\n' +
+                            'AxiosError')
+                        setInfo('')
+                        setDisabled(false)
+                        return
+                    }
+
+                    default: return setDisabled(false);
+                }
 
             })
     }
@@ -56,6 +93,7 @@ const HW13 = () => {
                         onClick={send(true)}
                         xType={'secondary'}
                         // дописать
+                        disabled={disabled}
 
                     >
                         Send true
@@ -65,6 +103,7 @@ const HW13 = () => {
                         onClick={send(false)}
                         xType={'secondary'}
                         // дописать
+                        disabled={disabled}
 
                     >
                         Send false
@@ -74,6 +113,7 @@ const HW13 = () => {
                         onClick={send(undefined)}
                         xType={'secondary'}
                         // дописать
+                        disabled={disabled}
 
                     >
                         Send undefined
@@ -83,6 +123,7 @@ const HW13 = () => {
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
                         // дописать
+                        disabled={disabled}
 
                     >
                         Send null
